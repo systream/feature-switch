@@ -1,1 +1,7 @@
-# feature-toggle
+# Feature switch
+
+## Installation
+
+## Usage examples
+
+

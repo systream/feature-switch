@@ -1,0 +1,25 @@
+{
+  "name": "systream/feature-switch",
+  "description": "This package provides feature toggle/switch functionality",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "keywords": ["feature", "flag", "toggle", "bit", "switch", "flipper", "flip"],
+  "authors": [
+    {
+      "name": "Peter Tihanyi",
+      "email": "tihi@systream.hu"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Systream\\": "src/",
+      "Tests\\Systream\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.7.*"
+  }
+}
