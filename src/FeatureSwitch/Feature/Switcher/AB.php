@@ -29,7 +29,7 @@ class AB implements FeatureSwitcherInterface
 			$cookieResult = $this->getRandomState();
 			$cookieWrapper->set($featureCookieKey, $cookieResult, self::EXPIRE);
 		}
-		return $cookieResult;
+		return filter_var($cookieResult, FILTER_VALIDATE_BOOLEAN);
 	}
 
 	/**
@@ -39,7 +39,8 @@ class AB implements FeatureSwitcherInterface
 	{
 		$state = $this->lastState === null ? $this->getRandomStateByMicroTime() : !$this->lastState;
 		$this->lastState = $state;
-		return $state;
+
+		return $state ? 'TRUE' : 'FALSE';
 
 	}
 
