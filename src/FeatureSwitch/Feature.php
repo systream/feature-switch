@@ -13,10 +13,6 @@ class Feature implements FeatureInterface, SwitchableFeatureInterface
 	 * @var string
 	 */
 	protected $key;
-	/**
-	 * @var string
-	 */
-	protected $name;
 
 	/**
 	 * @var FeatureSwitcherInterface[]
@@ -26,12 +22,10 @@ class Feature implements FeatureInterface, SwitchableFeatureInterface
 	/**
 	 * Feature constructor.
 	 * @param string $key
-	 * @param string $name
 	 */
-	public function __construct($key, $name = '')
+	public function __construct($key)
 	{
 		$this->key = $key;
-		$this->name = $name;
 	}
 
 	/**
@@ -42,6 +36,9 @@ class Feature implements FeatureInterface, SwitchableFeatureInterface
 		return $this->key;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isEnabled()
 	{
 		foreach ($this->featureSwitcher as $featureSwitcher) {

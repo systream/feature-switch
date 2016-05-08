@@ -14,6 +14,8 @@ composer.json:
 }
 ```
 
+This library requires `php 5.6` or higher. PHP7 and HHVM is also supported and tested.
+
 ## Usage examples
 
 By default the feature is not enabled.

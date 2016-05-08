@@ -3,7 +3,6 @@
 namespace Systream\FeatureSwitch\Feature\Switcher;
 
 
-
 use Systream\FeatureSwitch\Feature\FeatureInterface;
 use Systream\FeatureSwitch\Feature\FeatureSwitcherInterface;
 
