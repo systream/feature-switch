@@ -8,30 +8,31 @@ You can install this package via [packagist.org](https://packagist.org/packages/
 
 composer.json:
 
-`
+```json
 "require": {
     "systream/feature-switch": "1.*"
 }
-`
+```
 
 ## Usage examples
 
-By default the feature is not enabled:
+By default the feature is not enabled.
 
 ```php
-
 $feature = new Feature('foo_bar_feature_key');
 $feature->isEnabled(); // will return: false
 
 ```
+
+You have to set up switchers.
+
 ### Switchers / toggles
 
-#### Simple switcher
+#### Simple
 
 You can easily switch on a feature:
 
 ```php
-
 $feature = new Feature('foo_bar_feature_key');
 $feature->addSwitcher(Simple::enabled());
 $feature->isEnabled(); // will return: true
@@ -40,11 +41,10 @@ $feature->isEnabled(); // will return: true
 
 #### A/B testing
 
-You can setup a switch witch enables the feature approximately 50% of the visitors.
-The feature status is tracking by cookie, so if the visitor returns the same state of the feature will be shown.
+This will enable the feature approximately 50% of the visitors.
+The feature status is tracking by cookie, so if the visitor returns, the same state of the feature will be shown.
 
 ```php
-
 $feature = new Feature('foo_bar_feature_key');
 $feature->addSwitcher(new AB());
 $feature->isEnabled();
@@ -57,7 +57,6 @@ With this library you can set up a time based feature toggle too.
 For example you cool new feature will be available for every visitor after a point in time.
 
 ```php
-
 $feature = new Feature('foo_bar_feature_key');
 $feature->addSwitcher(new Until(\DateTime::createFromFormat('Y-m-d H:i:s', '2017-08-12 10:00:00')));
 $feature->isEnabled(); // brefore 2017-08-12 10:00:00 it's return false, after will return true
@@ -67,7 +66,6 @@ $feature->isEnabled(); // brefore 2017-08-12 10:00:00 it's return false, after w
 If you want to disable a feature after a date:
 
 ```php
-
 $feature = new Feature('foo_bar_feature_key');
 $feature->addSwitcher(new Until(\DateTime::createFromFormat('Y-m-d H:i:s', '2017-08-12 10:00:00'), false));
 $feature->isEnabled(); // brefore 2017-08-12 10:00:00 it's return true, after will return false
@@ -76,10 +74,9 @@ $feature->isEnabled(); // brefore 2017-08-12 10:00:00 it's return true, after wi
 
 #### Callback
 
-For custom switch you can pass a closure as a feature switcher
+For custom cases:
 
 ```php
-
 $feature = new Feature('foo_bar_feature_key');
 $feature->addSwitcher(
 	new Callback(function() {
@@ -87,21 +84,19 @@ $feature->addSwitcher(
 		return true;
 	})
 );
-$feature->isEnabled(); // brefore 2017-08-12 10:00:00 it's return false, after will return true
+$feature->isEnabled();
 
 ```
 
 ### Add multiple switcher/toggle
 
 ```php
-
 $feature = new Feature('foo_bar_feature_key');
 $feature->addSwitcher(new AB());
 $feature->addSwitcher(new Until(\DateTime::createFromFormat('Y-m-d H:i:s', '2017-08-12 10:00:00')));
-$feature->isEnabled(); // brefore 2017-08-12 10:00:00 it's return false, after will return true
+$feature->isEnabled();
 
 ```
 
 The feature will passed to all of the switcher until one of them return true;
-In this case the feature will tested first with AB switcher and if it returns false then it passed to the next time based switcher.
-
+In this case the feature will tested first with AB switcher and if it returns false then it passes to the next time based switcher.
