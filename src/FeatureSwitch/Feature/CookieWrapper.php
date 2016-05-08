@@ -26,9 +26,7 @@ class CookieWrapper
 	public function set($name, $value, $ttl)
 	{
 		$result = setcookie($name, $value, time() + $ttl);
-		if ($result) {
-			$_COOKIE[$name] = $value;
-		}
+		$_COOKIE[$name] = $value;
 		return $result;
 	}
 }
