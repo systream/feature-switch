@@ -37,14 +37,6 @@ class Feature implements FeatureInterface, SwitchableFeatureInterface
 	/**
 	 * @return string
 	 */
-	public function getName()
-	{
-		return $this->name;
-	}
-
-	/**
-	 * @return string
-	 */
 	public function getKey()
 	{
 		return $this->key;

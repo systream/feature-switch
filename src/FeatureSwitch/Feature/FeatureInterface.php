@@ -8,10 +8,5 @@ interface FeatureInterface
 	/**
 	 * @return string
 	 */
-	public function getName();
-
-	/**
-	 * @return string
-	 */
 	public function getKey();
 }

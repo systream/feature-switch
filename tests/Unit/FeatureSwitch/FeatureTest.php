@@ -25,33 +25,6 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
-	public function getNameTest()
-	{
-		$featureName = 'This is the name of the feature';
-		$feature = new Feature('fooBar', $featureName);
-
-		$this->assertEquals(
-			$featureName,
-			$feature->getName()
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function getName_NotSet()
-	{
-		$feature = new Feature('fooBar2');
-
-		$this->assertEquals(
-			'',
-			$feature->getName()
-		);
-	}
-
-	/**
-	 * @test
-	 */
 	public function isFeatureEnabled_defaultNot()
 	{
 		$feature = new Feature('test');
