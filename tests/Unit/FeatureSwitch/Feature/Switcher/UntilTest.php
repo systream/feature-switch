@@ -4,6 +4,7 @@
 namespace Tests\Systream\Unit\FeatureSwitch\Feature\Switcher;
 
 
+use Systream\FeatureSwitch\Feature;
 use Systream\FeatureSwitch\Feature\Switcher\Until;
 
 class UntilTest extends AbstractTest
@@ -81,6 +82,30 @@ class UntilTest extends AbstractTest
 
 		$this->assertEquals($expected,
 			$featureSwitch->isEnabled($this->getFeatureMock())
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function readmeTest_before()
+	{
+		$feature = new Feature('foo_bar_feature_key');
+		$feature->addSwitcher(new Until(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s', time() + 10)), false));
+		$this->assertFalse(
+			$feature->isEnabled()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function readmeTest_after()
+	{
+		$feature = new Feature('foo_bar_feature_key');
+		$feature->addSwitcher(new Until(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s', time() - 10)), false));
+		$this->assertTrue(
+			$feature->isEnabled()
 		);
 	}
 }

@@ -17,7 +17,7 @@ class Feature implements FeatureInterface, SwitchableFeatureInterface
 	/**
 	 * @var FeatureSwitcherInterface[]
 	 */
-	protected $featureSwitcher = array();
+	protected $featureSwitchers = array();
 
 	/**
 	 * Feature constructor.
@@ -41,7 +41,7 @@ class Feature implements FeatureInterface, SwitchableFeatureInterface
 	 */
 	public function isEnabled()
 	{
-		foreach ($this->featureSwitcher as $featureSwitcher) {
+		foreach ($this->featureSwitchers as $featureSwitcher) {
 			if ($featureSwitcher->isEnabled($this)) {
 				return true;
 			}
@@ -55,6 +55,6 @@ class Feature implements FeatureInterface, SwitchableFeatureInterface
 	 */
 	public function addSwitcher(FeatureSwitcherInterface $featureSwitcher)
 	{
-		$this->featureSwitcher[] = $featureSwitcher;
+		$this->featureSwitchers[] = $featureSwitcher;
 	}
 }

@@ -90,6 +90,10 @@ $feature->isEnabled();
 
 ```
 
+#### Writing custom switcher
+
+The only thing you should do that your class need to implement `FeatureSwitcherInterface` interface.
+
 ### Add multiple switcher/toggle
 
 ```php
