@@ -3,7 +3,7 @@
   "description": "This package provides feature toggle/switch functionality",
   "minimum-stability": "dev",
   "license": "MIT",
-  "keywords": ["feature", "flag", "toggle", "bit", "switch", "flipper", "flip"],
+  "keywords": ["feature", "flag", "toggle", "switch", "flipper", "flip", "switcher", "AB test"],
   "authors": [
     {
       "name": "Peter Tihanyi",
