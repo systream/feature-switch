@@ -16,16 +16,14 @@ class Until implements FeatureSwitcherInterface
 	/**
 	 * @var bool
 	 */
-	private $newState;
+	private $newState = true;
 
 	/**
 	 * @param \DateTime $dateTime
-	 * @param bool $newState
 	 */
-	public function __construct(\DateTime $dateTime, $newState = true)
+	public function __construct(\DateTime $dateTime)
 	{
 		$this->dateTime = $dateTime;
-		$this->newState = (bool)$newState;
 	}
 
 	/**
@@ -44,5 +42,13 @@ class Until implements FeatureSwitcherInterface
 		}
 
 		return $state;
+	}
+
+	/**
+	 * @param bool $state
+	 */
+	public function setState($state)
+	{
+		$this->newState = (bool)$state;
 	}
 }

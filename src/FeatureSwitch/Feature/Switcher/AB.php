@@ -3,6 +3,7 @@
 namespace Systream\FeatureSwitch\Feature\Switcher;
 
 
+use Systream\FeatureSwitch\Feature\CookieWrapper;
 use Systream\FeatureSwitch\Feature\FeatureInterface;
 use Systream\FeatureSwitch\Feature\FeatureSwitcherInterface;
 
@@ -22,12 +23,13 @@ class AB implements FeatureSwitcherInterface
 	public function isEnabled(FeatureInterface $feature)
 	{
 		$featureCookieKey = md5($feature->getKey());
-		if (!isset($_COOKIE[$featureCookieKey])) {
-
-			$_COOKIE[$featureCookieKey] = $this->getRandomState();
-			setcookie($featureCookieKey, $_COOKIE[$featureCookieKey], time() + self::EXPIRE);
+		$cookieWrapper = new CookieWrapper();
+		$cookieResult = $cookieWrapper->get($featureCookieKey);
+		if ($cookieResult === null) {
+			$cookieResult = $this->getRandomState();
+			$cookieWrapper->set($featureCookieKey, $cookieResult, self::EXPIRE);
 		}
-		return $_COOKIE[$featureCookieKey];
+		return $cookieResult;
 	}
 
 	/**

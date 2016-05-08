@@ -8,20 +8,10 @@ use Systream\FeatureSwitch\Feature\FeatureSwitcherInterface;
 
 class Simple implements FeatureSwitcherInterface
 {
-
 	/**
 	 * @var bool
 	 */
-	protected $state;
-
-	/**
-	 * Simple constructor.
-	 * @param bool $state
-	 */
-	public function __construct($state = false)
-	{
-		$this->state = (bool)$state;
-	}
+	protected $state = false;
 
 	/**
 	 * @param FeatureInterface $feature
@@ -35,17 +25,27 @@ class Simple implements FeatureSwitcherInterface
 	/**
 	 * @return static|Simple
 	 */
-	public static function enabled()
+	public static function on()
 	{
-		return new static(true);
+		$static = new static();
+		$static->enable();
+		return $static;
 	}
 
 	/**
 	 * @return static|Simple
 	 */
-	public static function disabled()
+	public static function off()
 	{
-		return new static(false);
+		return new static();
+	}
+
+	/**
+	 * Set switcher to result always enabled
+	 */
+	public function enable()
+	{
+		$this->state = true;
 	}
 
 }

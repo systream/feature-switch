@@ -23,7 +23,8 @@ class SimpleTest extends AbstractTest
 	 */
 	public function toggleEnabled()
 	{
-		$toggle = new Simple(true);
+		$toggle = new Simple();
+		$toggle->enable();
 		$this->assertTrue(
 			$toggle->isEnabled($this->getFeatureMock())
 		);
@@ -41,26 +42,15 @@ class SimpleTest extends AbstractTest
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param bool $expected
-	 *
-	 * @test
-	 * @dataProvider specialSwitchValues
-	 */
-	public function assetSwitch($value, $expected)
-	{
-		$toggle = new Simple($value);
-		$this->assertEquals($expected, $toggle->isEnabled($this->getFeatureMock()));
-	}
-
-	/**
 	 * @test
 	 */
 	public function staticHelperEnabled()
 	{
+		$switcher = new Simple();
+		$switcher->enable();
 		$this->assertEquals(
-			new Simple(true),
-			Simple::enabled()
+			$switcher,
+			Simple::on()
 		);
 	}
 
@@ -70,23 +60,8 @@ class SimpleTest extends AbstractTest
 	public function staticHelperDisabled()
 	{
 		$this->assertEquals(
-			new Simple(false),
-			Simple::disabled()
-		);
-	}
-
-	/**
-	 * @return array
-	 */
-	public function specialSwitchValues()
-	{
-		return array(
-			array(1, true),
-			array(0, false),
-			array(array(), false),
-			array(array('foo', 'bar'), true),
-			array('foo', true),
-			array(null, false),
+			new Simple(),
+			Simple::off()
 		);
 	}
 }

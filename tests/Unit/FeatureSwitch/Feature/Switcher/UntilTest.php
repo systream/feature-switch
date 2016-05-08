@@ -76,7 +76,7 @@ class UntilTest extends AbstractTest
 		$dateTime->setTimestamp($timeStamp);
 		$featureSwitch = new Until($dateTime);
 		if ($state !== null) {
-			$featureSwitch = new Until($dateTime, $state);
+			$featureSwitch->setState($state);
 		}
 
 		$this->assertEquals($expected,

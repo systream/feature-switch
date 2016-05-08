@@ -34,7 +34,7 @@ You can easily switch on a feature:
 
 ```php
 $feature = new Feature('foo_bar_feature_key');
-$feature->addSwitcher(Simple::enabled());
+$feature->addSwitcher(Simple::on());
 $feature->isEnabled(); // will return: true
 
 ```
@@ -100,3 +100,7 @@ $feature->isEnabled();
 
 The feature will passed to all of the switcher until one of them return true;
 In this case the feature will tested first with AB switcher and if it returns false then it passes to the next time based switcher.
+
+## Test
+
+[![Build Status](https://travis-ci.org/systream/feature-switch.svg?branch=master)](https://travis-ci.org/systream/feature-switch)
