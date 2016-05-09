@@ -15,8 +15,12 @@
         beStrictAboutTestSize="true"
         verbose="true">
     <testsuites>
-        <testsuite name="All">
+        <testsuite name="Unit">
             <directory>./Unit/</directory>
+        </testsuite>
+
+        <testsuite name="Performance">
+            <directory>./Performance/</directory>
         </testsuite>
 
     </testsuites>

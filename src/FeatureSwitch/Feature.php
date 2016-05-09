@@ -20,6 +20,11 @@ class Feature implements FeatureInterface, SwitchableFeatureInterface
 	protected $featureSwitchers = array();
 
 	/**
+	 * @var bool
+	 */
+	protected $isEnabledCache = null;
+
+	/**
 	 * Feature constructor.
 	 * @param string $key
 	 */
@@ -41,12 +46,18 @@ class Feature implements FeatureInterface, SwitchableFeatureInterface
 	 */
 	public function isEnabled()
 	{
+		if ($this->isEnabledCache !== null) {
+			return $this->isEnabledCache;
+		}
+
 		foreach ($this->featureSwitchers as $featureSwitcher) {
 			if ($featureSwitcher->isEnabled($this)) {
+				$this->isEnabledCache = true;
 				return true;
 			}
 		}
 
+		$this->isEnabledCache = false;
 		return false;
 	}
 
@@ -56,5 +67,6 @@ class Feature implements FeatureInterface, SwitchableFeatureInterface
 	public function addSwitcher(FeatureSwitcherInterface $featureSwitcher)
 	{
 		$this->featureSwitchers[] = $featureSwitcher;
+		$this->isEnabledCache = null;
 	}
 }

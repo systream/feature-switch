@@ -35,7 +35,7 @@ class FeatureSwitch
 	public function addFeature(Feature\SwitchableFeatureInterface $feature)
 	{
 		if (isset($this->features[$feature->getKey()])) {
-			throw new \Exception('Thre is already a feature with this key.');
+			throw new \Exception(sprintf('There are already a feature with this key: %s', $feature->getKey()));
 		}
 		$this->features[$feature->getKey()] = $feature;
 	}
@@ -48,7 +48,7 @@ class FeatureSwitch
 	public function isEnabled($key)
 	{
 		if (!isset($this->features[$key])) {
-			throw new \Exception('Unknown feature.');
+			throw new \Exception(sprintf('Unknown feature: %s', $key));
 		}
 		return $this->features[$key]->isEnabled();
 	}
