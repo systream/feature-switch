@@ -22,7 +22,7 @@ class PerformanceTest extends \PHPUnit_Framework_TestCase
 			$featureSwitch->addFeature(FeatureSwitch::buildFeature('feature_name_' . $x, (bool)rand(0, 1)));
 		}
 
-		$this->assertLessThan(0.01, microtime(true) - $startTime); // 10 ms
+		$this->assertLessThan(0.05, microtime(true) - $startTime); // 50 ms
 
 		return $featureSwitch;
 	}
@@ -40,7 +40,7 @@ class PerformanceTest extends \PHPUnit_Framework_TestCase
 			$featureSwitch->isEnabled('feature_name_' . rand(0, 100));
 		}
 
-		$this->assertLessThan(0.01, microtime(true) - $startTime); // 10 ms
+		$this->assertLessThan(0.05, microtime(true) - $startTime); // 50 ms
 	}
 
 }
