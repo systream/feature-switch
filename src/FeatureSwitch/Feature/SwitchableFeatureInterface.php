@@ -3,7 +3,7 @@
 namespace Systream\FeatureSwitch\Feature;
 
 
-interface SwitchableFeatureInterface
+interface SwitchableFeatureInterface extends FeatureInterface
 {
 	/**
 	 * @return bool

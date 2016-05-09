@@ -14,7 +14,7 @@ composer.json:
 }
 ```
 
-This library requires `php 5.6` or higher. PHP7 and HHVM is also supported and tested.
+This library requires `php 5.6` or higher, but also works on php 5.4.
 
 ## Usage examples
 
@@ -26,9 +26,9 @@ $feature->isEnabled(); // will return: false
 
 ```
 
-You have to set up switchers.
+If you want to change the feature state, you have to set up one or more switcher.
 
-### Switchers / toggles
+### Switchers (/ toggles / flippers)
 
 #### Simple
 
@@ -107,6 +107,32 @@ $feature->isEnabled();
 The feature will passed to all of the switcher until one of them return true;
 In this case the feature will tested first with AB switcher and if it returns false then it passes to the next time based switcher.
 
+## FeatureSwitch
+
+### Simple feature builder
+
+```php
+$feature1 = FeatureSwitch::buildFeature('foo_feature', true); // enabled
+$feature2 = FeatureSwitch::buildFeature('another_bar_feature', false); // disabled
+```
+
+### Container
+
+```php
+$featureSwitch = new FeatureSwitch();
+$featureSwitch->addFeature(FeatureSwitch::buildFeature('foo', true));
+
+$feature = new Feature('bar2');
+$feature->addSwitcher(new AB());
+
+$featureSwitch->addFeature($feature);
+
+```
+
+```php
+$featureSwitch->isEnabled('foo'); // true
+$featureSwitch->isEnabled('bar2');
+```
 ## Test
 
 [![Build Status](https://travis-ci.org/systream/feature-switch.svg?branch=master)](https://travis-ci.org/systream/feature-switch)
