@@ -1,6 +1,6 @@
 {
   "name": "systream/feature-switch",
-  "description": "This package provides feature toggle/switch functionality",
+  "description": "This package provides feature switch functionality. A/B test support and time based switcher.",
   "minimum-stability": "dev",
   "license": "MIT",
   "keywords": ["feature", "flag", "toggle", "switch", "flipper", "flip", "switcher", "AB test"],
