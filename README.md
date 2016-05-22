@@ -134,7 +134,7 @@ $featureSwitch->isEnabled('foo'); // true
 $featureSwitch->isEnabled('bar2');
 ```
 
-You can user FeatureSwitch class as object:
+You can user FeatureSwitch class as Array:
 ```php
 $featureSwitch = new FeatureSwitch();
 
