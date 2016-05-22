@@ -9,7 +9,7 @@ use Systream\FeatureSwitch\Feature\FeatureSwitcherInterface;
 
 class AB implements FeatureSwitcherInterface
 {
-	const EXPIRE = 15552000; // ~6 months
+	const EXPIRE = 23328000; // ~9 months
 
 	/**
 	 * @var null|int
