@@ -76,4 +76,114 @@ class FeatureSwitchTest extends \PHPUnit_Framework_TestCase
 		$featureSwitch->addFeature(FeatureSwitch::buildFeature('foo', true));
 		$featureSwitch->addFeature(FeatureSwitch::buildFeature('foo', false));
 	}
+
+	/**
+	 * @test
+	 */
+	public function iterator()
+	{
+		
+		$featureNames = array(
+			'foo',
+			'bar',
+			'fooBar'
+		);
+		
+		$featureSwitch = new FeatureSwitch();
+		foreach ($featureNames as $featureName) {
+			$featureSwitch->addFeature(FeatureSwitch::buildFeature($featureName, true));
+		}
+
+		$index = 0;
+		/** @var FeatureSwitch\Feature $feature */
+		foreach ($featureSwitch as $feature) {
+			$this->assertEquals($featureNames[$index++], $feature->getKey());
+		}
+
+		$this->assertEquals($index, count($featureNames));
+	}
+
+	/**
+	 * @test
+	 */
+	public function iterator_isset()
+	{
+		$featureSwitch = new FeatureSwitch();
+		$featureSwitch->addFeature(FeatureSwitch::buildFeature('foo', true));
+
+		$this->assertTrue(isset($featureSwitch['foo']));
+		$this->assertFalse(isset($featureSwitch['foo_not_exists']));
+
+		$this->assertTrue(
+			$featureSwitch['foo']->isEnabled()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function iteratorSet_nameSame()
+	{
+		$featureSwitch = new FeatureSwitch();
+		$feature = FeatureSwitch::buildFeature('foo', true);
+		$featureSwitch['foo'] = $feature;
+
+		$this->assertTrue($featureSwitch->isEnabled('foo'));
+	}
+
+	/**
+	 * @test
+	 * @expectedException \Exception
+	 */
+	public function iteratorSet_nameNotTheSame()
+	{
+		$featureSwitch = new FeatureSwitch();
+		$featureSwitch['foo'] = FeatureSwitch::buildFeature('foo2', true);
+	}
+
+
+	/**
+	 * @test
+	 */
+	public function iteratorSet_withoutKey()
+	{
+		$featureSwitch = new FeatureSwitch();
+		$featureSwitch[] = FeatureSwitch::buildFeature('foo', true);
+		$this->assertTrue($featureSwitch->isEnabled('foo'));
+		$featureSwitch['foo']->isEnabled();
+	}
+
+	/**
+	 * @test
+	 * @expectedException \Exception
+	 */
+	public function iteratorSet_notFeature_withKey()
+	{
+		$featureSwitch = new FeatureSwitch();
+		$featureSwitch['foo'] = 'foo';
+	}
+
+	/**
+	 * @test
+	 * @expectedException \Exception
+	 */
+	public function iteratorSet_notFeature_withoutKey()
+	{
+		$featureSwitch = new FeatureSwitch();
+		$featureSwitch[] = 'foo';
+	}
+
+	/**
+	 * @test
+	 */
+	public function iterator_unset()
+	{
+		$featureSwitch = new FeatureSwitch();
+		$featureSwitch[] = FeatureSwitch::buildFeature('foo', true);
+
+		$this->assertTrue(isset($featureSwitch['foo']));
+
+		unset($featureSwitch['foo']);
+		$this->assertFalse(isset($featureSwitch['foo']));
+	}
 }

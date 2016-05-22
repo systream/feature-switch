@@ -133,6 +133,16 @@ $featureSwitch->addFeature($feature);
 $featureSwitch->isEnabled('foo'); // true
 $featureSwitch->isEnabled('bar2');
 ```
+
+You can user FeatureSwitch class as object:
+```php
+$featureSwitch = new FeatureSwitch();
+
+$featureSwitch[] = FeatureSwitch::buildFeature('foo', true);
+$featureSwitch->isEnabled('foo'); // returns true
+$featureSwitch['foo']->isEnabled();
+```
+
 ## Test
 
 [![Build Status](https://travis-ci.org/systream/feature-switch.svg?branch=master)](https://travis-ci.org/systream/feature-switch)
