@@ -1,15 +1,13 @@
 <?php
 
-namespace Systream\FeatureSwitch;
+namespace Systream;
 
 
-trait FeatureSwitchArrayDecoratorTrait
+use Systream\FeatureSwitch;
+use Systream\FeatureSwitch\Feature\SwitchableFeatureInterface;
+
+class FeatureSwitchArray extends FeatureSwitch implements \Iterator, \ArrayAccess
 {
-
-	/**
-	 * @var Feature\SwitchableFeatureInterface[]
-	 */
-	protected $features = array();
 
 	/**
 	 * @var int
@@ -96,7 +94,7 @@ trait FeatureSwitchArrayDecoratorTrait
 	 * @param mixed $offset <p>
 	 * The offset to retrieve.
 	 * </p>
-	 * @return Feature\SwitchableFeatureInterface
+	 * @return SwitchableFeatureInterface
 	 * @since 5.0.0
 	 */
 	public function offsetGet($offset)
@@ -110,7 +108,7 @@ trait FeatureSwitchArrayDecoratorTrait
 	 * @param mixed $offset <p>
 	 * The offset to assign the value to.
 	 * </p>
-	 * @param Feature\SwitchableFeatureInterface $value <p>
+	 * @param SwitchableFeatureInterface $value <p>
 	 * The value to set.
 	 * </p>
 	 * @throws \Exception
@@ -118,7 +116,7 @@ trait FeatureSwitchArrayDecoratorTrait
 	 */
 	public function offsetSet($offset, $value)
 	{
-		if (!$value instanceof Feature\SwitchableFeatureInterface) {
+		if (!$value instanceof SwitchableFeatureInterface) {
 			throw new \Exception('The value must be SwitchableFeatureInterface');
 		}
 

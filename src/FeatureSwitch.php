@@ -3,14 +3,11 @@
 namespace Systream;
 
 
-use Systream\FeatureSwitch\FeatureSwitchArrayDecoratorTrait;
 use Systream\FeatureSwitch\Feature;
 use Systream\FeatureSwitch\Feature\Switcher\Simple;
 
-class FeatureSwitch implements \Iterator, \ArrayAccess
+class FeatureSwitch
 {
-	use FeatureSwitchArrayDecoratorTrait;
-
 	/**
 	 * @var Feature\SwitchableFeatureInterface[]
 	 */

@@ -133,10 +133,12 @@ $featureSwitch->addFeature($feature);
 $featureSwitch->isEnabled('foo'); // true
 $featureSwitch->isEnabled('bar2');
 ```
+#### FeatureSwitchArray
+This class decorates the ```FeatureSwitch``` with array access support.
 
-You can user FeatureSwitch class as Array:
+You can user FeatureSwitchArray class as Array:
 ```php
-$featureSwitch = new FeatureSwitch();
+$featureSwitch = new FeatureSwitchArray();
 
 $featureSwitch[] = FeatureSwitch::buildFeature('foo', true);
 $featureSwitch->isEnabled('foo'); // returns true
