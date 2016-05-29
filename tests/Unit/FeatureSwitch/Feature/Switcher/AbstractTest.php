@@ -14,7 +14,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
 	 */
 	protected function getFeatureMock($key = '')
 	{
-		$mock = $this->getMock('Systream\FeatureSwitch\Feature\FeatureInterface');
+		$mock = $this->createMock('Systream\FeatureSwitch\Feature\FeatureInterface');
 
 		if ($key) {
 			$mock
