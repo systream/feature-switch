@@ -128,8 +128,7 @@ class FeatureSwitchArray extends FeatureSwitch implements \Iterator, \ArrayAcces
 			return;
 		}
 
-		$this->features[$value->getKey()] = $value;
-
+		$this->storeFeature($value);
 	}
 
 	/**
