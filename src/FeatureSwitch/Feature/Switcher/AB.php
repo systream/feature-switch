@@ -12,7 +12,7 @@ class AB implements FeatureSwitcherInterface
 	const EXPIRE = 23328000; // ~9 months
 
 	/**
-	 * @var null|int
+	 * @var null|bool
 	 */
 	private $lastState = null;
 
@@ -33,7 +33,7 @@ class AB implements FeatureSwitcherInterface
 	}
 
 	/**
-	 * @return bool|int
+	 * @return string
 	 */
 	protected function getRandomState()
 	{
@@ -45,7 +45,7 @@ class AB implements FeatureSwitcherInterface
 	}
 
 	/**
-	 * @return int
+	 * @return bool
 	 */
 	protected function getRandomStateByMicroTime()
 	{

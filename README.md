@@ -119,13 +119,12 @@ $feature2 = FeatureSwitch::buildFeature('another_bar_feature', false); // disabl
 ### Container
 
 ```php
-$featureSwitch = new FeatureSwitch();
-$featureSwitch->addFeature(FeatureSwitch::buildFeature('foo', true));
+$route = new Router();
+$route->addRoute(new SimpleRouting('/foo', new TestController()));
+$route->addRoute(new FinalMatchRouting(new NotFoundController()));
 
-$feature = new Feature('bar2');
-$feature->addSwitcher(new AB());
-
-$featureSwitch->addFeature($feature);
+$serverRequest = ServerRequestFactory::fromGlobals();
+$route->dipatch($serverRequest)
 
 ```
 
