@@ -2,8 +2,6 @@
 
 namespace Systream;
 
-
-use Systream\FeatureSwitch;
 use Systream\FeatureSwitch\Feature\SwitchableFeatureInterface;
 
 class FeatureSwitchArray extends FeatureSwitch implements \Iterator, \ArrayAccess
@@ -13,7 +11,7 @@ class FeatureSwitchArray extends FeatureSwitch implements \Iterator, \ArrayAcces
 	 * @var int
 	 */
 	protected $currentIndex = 0;
-	
+
 	/**
 	 * Return the current element
 	 * @link http://php.net/manual/en/iterator.current.php

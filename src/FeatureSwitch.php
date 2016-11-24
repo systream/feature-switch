@@ -31,12 +31,12 @@ class FeatureSwitch
 
 	/**
 	 * @param Feature\SwitchableFeatureInterface $feature
-	 * @throws \Exception
+	 * @throws \RuntimeException
 	 */
 	public function addFeature(Feature\SwitchableFeatureInterface $feature)
 	{
 		if (isset($this->features[$feature->getKey()])) {
-			throw new \Exception(sprintf('There are already a feature with this key: %s', $feature->getKey()));
+			throw new \RuntimeException(sprintf('There are already a feature with this key: %s', $feature->getKey()));
 		}
 		
 		$this->storeFeature($feature);
@@ -45,12 +45,12 @@ class FeatureSwitch
 	/**
 	 * @param string $key
 	 * @return bool
-	 * @throws \Exception
+	 * @throws \RuntimeException
 	 */
 	public function isEnabled($key)
 	{
 		if (!isset($this->features[$key])) {
-			throw new \Exception(sprintf('Unknown feature: %s', $key));
+			throw new \RuntimeException(sprintf('Unknown feature: %s', $key));
 		}
 		return $this->features[$key]->isEnabled();
 	}

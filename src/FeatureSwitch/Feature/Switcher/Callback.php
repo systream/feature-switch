@@ -19,7 +19,7 @@ class Callback implements FeatureSwitcherInterface
 	 */
 	public function __construct(\Closure $closure)
 	{
-		 $this->closure = $closure;
+		$this->closure = $closure;
 	}
 
 	/**

@@ -14,7 +14,7 @@ composer.json:
 }
 ```
 
-This library requires `php 5.6` or higher, but also works on php 5.4.
+This library requires `php 5.6` or higher.
 
 ## Usage examples
 
