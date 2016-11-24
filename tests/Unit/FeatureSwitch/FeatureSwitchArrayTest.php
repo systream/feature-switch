@@ -54,6 +54,7 @@ class FeatureSwitchArrayTest extends FeatureSwitchTest
 	 */
 	public function iterator_isset()
 	{
+		/** @var FeatureSwitch\Feature[] $featureSwitch */
 		$featureSwitch = $this->getClass();
 		$featureSwitch->addFeature($featureSwitch::buildFeature('foo', true));
 

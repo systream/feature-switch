@@ -37,10 +37,10 @@ class AB implements FeatureSwitcherInterface
 	 */
 	protected function getRandomState()
 	{
-		$state = $this->lastState === null ? $this->getRandomStateByMicroTime() : !$this->lastState;
-		$this->lastState = $state;
+		$this->lastState =
+			($this->lastState === null ? $this->getRandomStateByMicroTime() : !$this->lastState);
 
-		return $state ? 'TRUE' : 'FALSE';
+		return $this->lastState ? 'TRUE' : 'FALSE';
 
 	}
 
